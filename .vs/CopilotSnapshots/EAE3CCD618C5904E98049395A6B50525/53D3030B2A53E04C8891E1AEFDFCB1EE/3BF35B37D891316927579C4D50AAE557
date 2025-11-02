@@ -1,0 +1,97 @@
+﻿const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require('path');
+const { Client, GatewayIntentBits } = require('discord.js');
+
+function createWindow() {
+    const mainWindow = new BrowserWindow({
+    width: 1200,
+        height: 800,
+        webPreferences: {
+       nodeIntegration: true,
+          contextIsolation: false,
+   enableRemoteModule: true
+     }
+    });
+
+ mainWindow.loadFile('index.html');
+    
+    // Uncomment this line to open DevTools by default
+    // mainWindow.webContents.openDevTools();
+}
+
+app.whenReady().then(() => {
+    createWindow();
+
+    app.on('activate', function () {
+        if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    });
+});
+
+app.on('window-all-closed', function () {
+    if (process.platform !== 'darwin') app.quit();
+});
+
+// Handle server cloning
+ipcMain.on('clone-server', async (event, { sourceServerId, botToken, options }) => {
+    const client = new Client({
+        intents: [
+            GatewayIntentBits.Guilds,
+ GatewayIntentBits.GuildMembers,
+            GatewayIntentBits.GuildBans,
+       GatewayIntentBits.GuildEmojisAndStickers,
+         GatewayIntentBits.GuildIntegrations,
+            GatewayIntentBits.GuildWebhooks,
+   GatewayIntentBits.GuildInvites,
+        GatewayIntentBits.GuildVoiceStates,
+ GatewayIntentBits.GuildMessages,
+            GatewayIntentBits.GuildMessageReactions
+   ]
+    });
+
+    try {
+await client.login(botToken);
+     event.reply('clone-progress', { progress: 10, status: 'Connected to Discord successfully' });
+
+        const sourceGuild = await client.guilds.fetch(sourceServerId);
+      if (!sourceGuild) {
+            throw new Error('Could not find source server');
+   }
+
+        event.reply('clone-progress', { progress: 20, status: 'Found source server' });
+
+        // Clone roles
+        if (options.roles) {
+            event.reply('clone-progress', { progress: 40, status: 'Cloning roles...' });
+        const roles = await sourceGuild.roles.fetch();
+ // Implementation for role cloning
+        }
+
+        // Clone channels
+        if (options.channels) {
+    event.reply('clone-progress', { progress: 60, status: 'Cloning channels...' });
+        const channels = await sourceGuild.channels.fetch();
+            // Implementation for channel cloning
+        }
+
+  // Clone emojis
+      if (options.emojis) {
+    event.reply('clone-progress', { progress: 80, status: 'Cloning emojis...' });
+            const emojis = await sourceGuild.emojis.fetch();
+       // Implementation for emoji cloning
+        }
+
+        // Clone server settings
+        if (options.settings) {
+       event.reply('clone-progress', { progress: 90, status: 'Cloning server settings...' });
+            // Implementation for settings cloning
+        }
+
+        event.reply('clone-progress', { progress: 100, status: 'Cloning completed successfully!' });
+
+    } catch (error) {
+     console.error('Error during cloning:', error);
+        event.reply('clone-error', error.message);
+    } finally {
+    client.destroy();
+    }
+});

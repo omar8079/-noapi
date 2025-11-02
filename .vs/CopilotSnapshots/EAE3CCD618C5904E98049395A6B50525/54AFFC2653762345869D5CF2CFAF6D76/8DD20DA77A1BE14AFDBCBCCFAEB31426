@@ -1,0 +1,122 @@
+﻿// Show/hide sections
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+    });
+    document.getElementById(sectionId).style.display = 'block';
+}
+
+// Bot testing functionality
+async function testBot() {
+    const token = document.getElementById('bot-token').value;
+    const command = document.getElementById('test-command').value;
+    
+    // Here you would implement the bot testing logic
+    // This is a placeholder for demonstration
+    console.log(`Testing bot with token: ${token} and command: ${command}`);
+}
+
+// Webhook manager functionality
+async function sendWebhook() {
+    const webhookUrl = document.getElementById('webhook-url').value;
+    const message = document.getElementById('webhook-message').value;
+
+    try {
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+     headers: {
+ 'Content-Type': 'application/json',
+         },
+            body: JSON.stringify({
+content: message
+            })
+        });
+
+    if (response.ok) {
+            alert('Message sent successfully!');
+        } else {
+            alert('Failed to send message');
+     }
+    } catch (error) {
+ alert('Error sending message: ' + error.message);
+}
+}
+
+// Token validator functionality
+function validateToken() {
+    const token = document.getElementById('token-input').value;
+    
+    // Basic token format validation
+    const tokenParts = token.split('.');
+    if (tokenParts.length !== 3) {
+        alert('Invalid token format');
+        return;
+    }
+
+    try {
+        // Attempt to decode the token (this is a basic check)
+        const payload = JSON.parse(atob(tokenParts[1]));
+        alert('Token format is valid!\nPayload: ' + JSON.stringify(payload, null, 2));
+    } catch (e) {
+     alert('Invalid token: Could not decode payload');
+    }
+}
+
+// Initialize permissions calculator
+const DISCORD_PERMISSIONS = {
+    'Administrator': 0x8,
+    'Manage Server': 0x20,
+    'Manage Roles': 0x10000000,
+    'Manage Channels': 0x10,
+    'Kick Members': 0x2,
+    'Ban Members': 0x4,
+    'Create Instant Invite': 0x1,
+    'Change Nickname': 0x4000000,
+    'Manage Nicknames': 0x8000000,
+    'Manage Emojis': 0x40000000,
+    'Manage Webhooks': 0x20000000,
+    'View Channels': 0x400,
+    'Send Messages': 0x800,
+    'Send TTS Messages': 0x1000,
+    'Manage Messages': 0x2000,
+    'Embed Links': 0x4000,
+    'Attach Files': 0x8000,
+    'Read Message History': 0x10000,
+    'Mention Everyone': 0x20000,
+    'Use External Emojis': 0x40000,
+    'Add Reactions': 0x40
+};
+
+// Initialize permissions calculator
+window.addEventListener('DOMContentLoaded', () => {
+    const permissionsList = document.querySelector('.permissions-list');
+    
+  Object.entries(DISCORD_PERMISSIONS).forEach(([perm, value]) => {
+        const div = document.createElement('div');
+        div.innerHTML = `
+            <label>
+                <input type="checkbox" value="${value}" onchange="calculatePermissions()">
+    ${perm}
+ </label>
+        `;
+permissionsList.appendChild(div);
+    });
+});
+
+function calculatePermissions() {
+    const checkboxes = document.querySelectorAll('.permissions-list input[type="checkbox"]');
+  let total = 0n;
+    
+    checkboxes.forEach(checkbox => {
+ if (checkbox.checked) {
+            total += BigInt(checkbox.value);
+        }
+    });
+    
+    document.getElementById('permission-integer').textContent = total.toString();
+}
+
+// Initialize the first section as visible
+document.addEventListener('DOMContentLoaded', () => {
+showSection('bot-testing');
+});

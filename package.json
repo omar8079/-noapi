@@ -1,0 +1,35 @@
+{
+  "name": "noapi",
+  "version": "1.0.0",
+  "description": "NOAPI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "set CSC_IDENTITY_AUTO_DISCOVERY=false && electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.24.2"
+  },
+  "devDependencies": {
+    "electron": "^24.8.8",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.noapi.app",
+    "productName": "NOAPI",
+    "win": {
+      "target": "portable",
+      "icon": "logo.ico"
+    },
+    "files": [
+      "**/*",
+      "node_modules/discord.js/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    }
+  }
+}

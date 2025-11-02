@@ -1,0 +1,16 @@
+﻿{
+  "name": "discord-dev-toolkit",
+  "version": "1.0.0",
+  "description": "A toolkit for Discord developers",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.24.2",
+    "electron": "^24.8.8"
+  }
+}
