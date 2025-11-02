@@ -1,11 +1,10 @@
 # Dependencies
 node_modules/
+package-lock.json
 
 # Build output
 dist/
 dist_old/
-
-# Electron
 out/
 
 # Logs
@@ -23,3 +22,9 @@ Thumbs.db
 # Cache
 *.cache
 .electron-builder-cache/
+
+# Git
+.git/
+
+# Unnecessary folders
+NOPI/
